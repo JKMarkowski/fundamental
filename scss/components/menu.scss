@@ -96,6 +96,13 @@ $block: #{$fd-namespace}-menu;
             @include fd-var-color("background-color", fd-color-state("selected-hover"), --fd-color-background-selected-hover);
           }
       }
+
+	  &--with-arrow {
+		  display: flex;
+		  align-items: center;
+		  justify-content: space-between;
+		  @include fd-icon("dropdown","l","after");
+	  }
     }
     &--addon-before {
         .fd-menu__item {

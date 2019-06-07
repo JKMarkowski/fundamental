@@ -1,0 +1,83 @@
+@import "./../settings";
+@import "./../mixins";
+@import "./../functions";
+@import "./../icons/mixins";
+/*!
+.fd-nav+(--vertical)
+    .fd-nav__item
+    .fd-nav__link+((.is-selected|[aria-selected=true]),(.is-disabled|[aria-disabled=true]))
+*/
+$block: #{$fd-namespace}-top-nav;
+.#{$block} {
+	$fd-nav-link-padding-x: fd-space("small") !default;
+	$fd-nav-link-padding-y: fd-space(4) !default;
+	$fd-nav-border-color: $fd-color--action;
+	$fd-nav-text-active-color: $fd-color--action;
+	$fd-nav-link-transition-params: $fd-animation--speed ease-in !default;
+	$fd-nav-link-border-width: 2px !default;
+	$fd-nav-background-color: fd-color("background", 2) !default;
+
+
+	$fd-popover-transition-params: $fd-animation--speed !default;
+	//$fd-mega-menu-box-shadow: 0 5px 20px 0 rgba(fd-color("neutral"), 0.08) !default;
+
+	@include fd-reset();
+	@include fd-var-color("background-color", $fd-nav-background-color);
+
+	$fd-nav-margin-bottom: 0 !default;
+	padding: 0;
+	display: flex;
+
+
+
+	//MODIFIERS *******************************************
+	&--vertical {
+		flex-direction: column;
+	}
+
+	//ELEMENTS *******************************************
+	&__list {
+		display: flex;
+	}
+
+	&__item {
+		display: block;
+		padding: 0 $fd-nav-link-padding-x;
+		@include fd-selected() {
+			@include fd-var-color("color", $fd-color, --fd-color-text-1);
+		}
+	}
+
+	&__link {
+		display: block;
+		padding: $fd-nav-link-padding-y 0;
+		position: relative;
+		&::before {
+			transition: all $fd-nav-link-transition-params;
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			display: inline-block;
+			height: $fd-nav-link-border-width;
+			width: calc(100% + 4px); // +2px for each site
+			background-color: transparent;
+			border-radius: $fd-border-radius $fd-border-radius 0 0;
+		}
+
+
+		&.active {
+			@include fd-var-color("color", $fd-color--action, --fd-color-action-1);
+			&::before {
+				@include fd-var-color("background-color", $fd-nav-border-color);
+			}
+		}
+	}
+
+	&__dropdown {
+		@include fd-icon("dropdown","m","after");
+		&::after {
+			margin-left: 6px;
+		}
+	}
+}
