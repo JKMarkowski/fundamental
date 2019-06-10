@@ -7,6 +7,7 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
+
     $('#copyright-year').text(new Date().getFullYear());
 
     if ((location.pathname === '/index.html') || (location.pathname === '/') || (location.pathname === '/fundamental/')) {
@@ -21,6 +22,7 @@ $(document).ready(function () {
 
 (function () {
     //dropdown
+    resizableGrid(document.getElementById('table-resizable'));
     var els = document.querySelectorAll("[aria-controls]");
     for (var i = 0; i < els.length; i++) {
         var el = els[i];
@@ -192,5 +194,65 @@ $(document).ready(function () {
         }
     }
 
+
+    function resizableGrid(table) {
+        var row = table.getElementsByTagName('tr')[0],
+            cols = row ? row.children : undefined;
+        if (!cols) return;
+
+        table.style.overflow = 'hidden';
+
+        var tableHeight = table.offsetHeight;
+
+        for (var i = 0; i < cols.length; i++) {
+            var div = createDiv(tableHeight);
+            cols[i].appendChild(div);
+            cols[i].style.position = 'relative';
+            setListeners(div);
+        }
+    }
+
+    function createDiv(height){
+        var div = document.createElement('div');
+        div.style.top = 0;
+        div.style.right = 0;
+        div.style.position = 'absolute';
+        div.style.cursor = 'col-resize';
+        div.style.userSelect = 'none';
+        div.style.height = height+'px';
+        div.className = 'columnResizeSelector';
+        return div;
+    }
+
+    function setListeners(div){
+        var pageX,curCol,nxtCol,curColWidth,nxtColWidth;
+        div.addEventListener('mousedown', function (e) {
+            curCol = e.target.parentElement;
+            nxtCol = curCol.nextElementSibling;
+            pageX = e.pageX;
+            curColWidth = curCol.offsetWidth
+            if (nxtCol)
+                nxtColWidth = nxtCol.offsetWidth
+        });
+
+        document.addEventListener('mousemove', function (e) {
+            if (curCol) {
+                var diffX = e.pageX - pageX;
+
+                if (nxtCol)
+                    nxtCol.style.width = (nxtColWidth - (diffX))+'px';
+
+                curCol.style.width = (curColWidth + diffX)+'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function (e) {
+            curCol = undefined;
+            nxtCol = undefined;
+            pageX = undefined;
+            nxtColWidth = undefined;
+            curColWidth = undefined;
+        });
+    }
 
 })();

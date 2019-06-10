@@ -28,6 +28,9 @@ $block: #{$fd-namespace}-table;
     $fd-table-sort-column-header-background-color: fd-color("neutral", 2);
     $fd-table-fixed-column-cell-color: fd-color("background", 2);
 
+	$fd-table-resize-selector-color: fd-color(action, 1) !default;
+	$fd-table-resize-selector-width: 4px !default;
+
     --fd-table-border-color: var(--fd-color-neutral-2);
     --fd-table-background-color: var(--fd-color-background-2);
     --fd-table-link-color: var(--fd-color-action-1);
@@ -209,4 +212,9 @@ $block: #{$fd-namespace}-table;
             @include fd-var-color("background-color", fd-color-state("hover"), --fd-color-background-hover);
         }
     }
+
+	.columnResizeSelector {
+		background: $fd-table-link-color;
+		width: $fd-table-resize-selector-width;
+	}
 }

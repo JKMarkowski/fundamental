@@ -61,6 +61,55 @@ A table is a set of tabular data. Line items can support data, images and action
 
 <br />
 
+## Table with resizable columns
+
+{% capture table-icon %}
+<table class="fd-table" id="table-resizable">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Column Header</th>
+            <th scope="col">Column Header</th>
+            <th scope="col">Column Header</th>
+            <th scope="col">Column Header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class=" fd-image--s fd-image--circle" aria-label="Image label"
+            style="background-image: url(http://api.adorable.io/avatars/50/rodney.artichoke@hybris.com.png);">
+            </span></td>
+            <td><a href="#" class="fd-has-font-weight-semi">user.name@email.com</a></td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>01/26/17</td>
+        </tr>
+        <tr>
+            <td><span class=" fd-image--s fd-image--circle" aria-label="Image label"
+            style="background-image: url(http://api.adorable.io/avatars/50/rodney.artichoke@hybris.com.png);">
+            </span></td>
+            <td><a href="#" class="fd-has-font-weight-semi">user.name@email.com</a></td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>01/26/17</td>
+        </tr>
+        <tr>
+            <td><span class=" fd-image--s fd-image--circle" aria-label="Image label"
+            style="background-image: url(http://api.adorable.io/avatars/50/rodney.artichoke@hybris.com.png);">
+            </span></td>
+            <td><a href="#" class="fd-has-font-weight-semi">user.name@email.com</a></td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>01/26/17</td>
+        </tr>
+    </tbody>
+</table>
+{% endcapture %}
+{% include display-component.html component=table-icon %}
+
+<br />
+
+
 ## Table with no borders
 
 `fd-table--no-borders` can be applied to render a table with no borders
