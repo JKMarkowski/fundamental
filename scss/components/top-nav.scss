@@ -11,12 +11,25 @@ $block: #{$fd-namespace}-top-nav;
 .#{$block} {
 	$fd-nav-link-padding-x: fd-space("small") !default;
 	$fd-nav-link-padding-y: fd-space(4) !default;
+	$fd-nav-popover-padding-x: fd-space("small") !default;
+	$fd-nav-popover-padding-y: fd-space(2) !default;
 	$fd-nav-border-color: $fd-color--action;
+	$fd-nav-separator-color: fd-color("neutral", 3) !default;;
 	$fd-nav-text-active-color: $fd-color--action;
 	$fd-nav-link-transition-params: $fd-animation--speed ease-in !default;
 	$fd-nav-link-border-width: 2px !default;
 	$fd-nav-background-color: fd-color("background", 2) !default;
+	$fd-nav-text-color: fd-color("text", 2) !default;
+	$fd-nav-popover-item-padding-x: fd-space(4) !default;
+	$fd-nav-sub-item-in-depth-padding-x: fd-space('m') !default;
+	$fd-nav-popover-item-padding-y: fd-space(3) !default;
 
+	$fd-popover-top-position: 95% !default;
+	$fd-popover-top-position-noarrow: 100% !default;
+	$fd-popover-left-position: 0 !default;
+	$fd-popover-border: solid 1px $fd-forms-border-color !default;
+	$fd-popover-z-index: map-get($fd-z-index-levels, "top") !default;
+	$fd-popover-background-color: fd-color(background, 2) !default;
 
 	$fd-popover-transition-params: $fd-animation--speed !default;
 	//$fd-mega-menu-box-shadow: 0 5px 20px 0 rgba(fd-color("neutral"), 0.08) !default;
@@ -38,6 +51,7 @@ $block: #{$fd-namespace}-top-nav;
 	//ELEMENTS *******************************************
 	&__list {
 		display: flex;
+		flex-flow: row wrap;
 	}
 
 	&__item {
@@ -46,6 +60,10 @@ $block: #{$fd-namespace}-top-nav;
 		@include fd-selected() {
 			@include fd-var-color("color", $fd-color, --fd-color-text-1);
 		}
+	}
+
+	&__sub-list {
+
 	}
 
 	&__link {
@@ -57,7 +75,7 @@ $block: #{$fd-namespace}-top-nav;
 			content: "";
 			position: absolute;
 			bottom: 0;
-			left: 0;
+			left: -2px;
 			display: inline-block;
 			height: $fd-nav-link-border-width;
 			width: calc(100% + 4px); // +2px for each site
@@ -75,9 +93,90 @@ $block: #{$fd-namespace}-top-nav;
 	}
 
 	&__dropdown {
+		margin-right: 6px;
 		@include fd-icon("dropdown","m","after");
 		&::after {
 			margin-left: 6px;
+		}
+	}
+
+	&__popover {
+		//padding: $fd-nav-popover-padding-y $fd-nav-popover-padding-x;
+		border: $fd-popover-border;
+		position: absolute;
+		white-space: nowrap;
+		z-index: $fd-popover-z-index;
+		border-radius: $fd-border-radius;
+		@include fd-var-color("background-color", $fd-nav-background-color);
+		@if $fd-support-css-var-fallback {
+			box-shadow: 0 5px 20px 0 fd-color("neutral", 3), 0 2px 8px 0 fd-color("neutral", 2);
+		}
+		box-shadow: 0 5px 20px 0 var(--fd-color-neutral-3), 0 2px 8px 0 var(--fd-color-neutral-2);
+		opacity: 1;
+		visibility: visible;
+		transition: all $fd-popover-transition-params;
+		left: $fd-popover-left-position;
+		top: $fd-popover-top-position;
+		transform: translateY(0);
+
+		&--inline {
+			position: relative;
+			border: none;
+			box-shadow: none;
+			border-radius: 0;
+			&[aria-hidden="true"],
+			&.is-hidden {
+				display: none;
+			}
+		}
+
+		&[aria-hidden="true"],
+		&.is-hidden {
+			z-index: 1;
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	&__sub-link {
+		display: flex;
+		justify-content: space-between;
+		position: relative;
+		padding: $fd-nav-popover-item-padding-y $fd-nav-popover-item-padding-x;
+		@include fd-var-color("color", $fd-nav-text-color);
+		border-bottom: 1px solid $fd-nav-separator-color;
+
+		&::before {
+			transition: all $fd-nav-link-transition-params;
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			height: 100%;
+			width: $fd-nav-link-border-width;
+			background-color: transparent;
+			border-radius: $fd-border-radius $fd-border-radius 0 0;
+		}
+
+		&.active {
+			@include fd-var-color("color", $fd-color--action);
+			&::before {
+				@include fd-var-color("background-color", $fd-nav-border-color);
+			}
+		}
+
+		&--deep {
+			padding-left: $fd-nav-sub-item-in-depth-padding-x;
+		}
+
+
+		&--with-arrow {
+			@include fd-icon("dropdown","l","after");
+			cursor: pointer;
+			&::after {
+				margin-left: 5px;
+			}
 		}
 	}
 }

@@ -16,7 +16,7 @@ The left navigation can always display or expand/collapse using the menu icon wi
 
 ## Top Navigation for bigger devices
 {% capture default %}
-<nav class="fd-top-nav">
+<nav class="fd-top-nav" id="top-nav">
     <ul class="fd-top-nav__list">
         <li class="fd-top-nav__item">
             <a class="fd-top-nav__link active" href="#">
@@ -45,28 +45,28 @@ The left navigation can always display or expand/collapse using the menu icon wi
         </li>
         <li class="fd-top-nav__item">
              <div class="fd-popover fd-popover--right">
-                <a class="fd-top-nav__dropdown fd-top-nav__link fd-popover__control active" aria-controls="jhqDa1"
+                <a href="#" class="fd-top-nav__dropdown fd-top-nav__link fd-popover__control active" aria-controls="jhqDa1"
                 aria-expanded="false" aria-haspopup="true" role="tab">More</a>
-                <div class="fd-popover__body fd-popover__body--right fd-popover__body--no-arrow"
+                <div class="fd-top-nav__popover"
                 aria-hidden="true" id="jhqDa1">
-                    <nav class="fd-menu">
-                        <ul class="fd-menu__list">
-                            <li>
-                                <a class="fd-menu__item fd-menu__item--with-arrow" aria-controls="jhqDa3" aria-expanded="false" aria-haspopup="true" role="tab">Option 1</a>
-                                <div class="fd-popover__body fd-popover__body--right fd-popover__body--inline fd-popover__body--no-arrow" aria-hidden="true" id="jhqDa3">
-                                    <nav class="fd-menu">
-                                        <ul class="fd-menu__list">
-                                            <li><a href="#" class="fd-menu__item">Option 1</a></li>
-                                            <li><a href="#" class="fd-menu__item">Option 2</a></li>
-                                            <li><a href="#" class="fd-menu__item">Option 3</a></li>
-                                            <li><a href="#" class="fd-menu__item">Option 4</a></li>
+                    <nav class="fd-top-nav__menu">
+                        <ul class="fd-top-nav__sub-list">
+                            <li class="fd-top-nav__sub-item">
+                                <a href="#" class="fd-top-nav__sub-link fd-top-nav__sub-link--with-arrow" aria-controls="jhqDa3" aria-expanded="false" aria-haspopup="true" role="tab">Option 1</a>
+                                <div class="fd-top-nav__popover fd-top-nav__popover--inline" aria-hidden="true" id="jhqDa3">
+                                    <nav class="fd-top-nav__menu">
+                                        <ul class="fd-top-nav__sub-list">
+                                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link fd-top-nav__sub-link--deep active">Option 1</a></li>
+                                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link fd-top-nav__sub-link--deep">Option 2</a></li>
+                                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link fd-top-nav__sub-link--deep">Option 3</a></li>
+                                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link fd-top-nav__sub-link--deep">Option 4</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </li>
-                            <li><a href="#" class="fd-menu__item">Option 2</a></li>
-                            <li><a href="#" class="fd-menu__item">Option 3</a></li>
-                            <li><a href="#" class="fd-menu__item">Option 4</a></li>
+                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link">Option 2</a></li>
+                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link">Option 3</a></li>
+                            <li class="fd-top-nav__sub-item"><a href="#" class="fd-top-nav__sub-link">Option 4</a></li>
                         </ul>
                     </nav>
                 </div>
